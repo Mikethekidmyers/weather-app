@@ -10,12 +10,14 @@ export default function ListModule(data){
 				return (
 					<li key={i}>
 						<table>
-							<tr>
-								<th>{date}</th>
-								<th>℃</th>
-								<th>Humidity</th>
-								<th>Wind speed</th>
-							</tr>
+							<thead>
+								<tr>
+									<th>{date}</th>
+									<th>℃</th>
+									<th>Humidity</th>
+									<th>Wind speed</th>
+								</tr>
+							</thead>
 							{data.map(({ 
 								hour, 
 								air_temperature, 
@@ -23,12 +25,14 @@ export default function ListModule(data){
 								wind_speed
 							}, i) => {
 								return(
-									<tr key={i}>
-										<td>{hour}</td>
-										<td>{air_temperature}℃</td>
-										<td>{relative_humidity}%</td>
-										<td>{wind_speed}m/s</td>
-									</tr>
+									<tbody key={i}>
+										<tr>
+											<td>{hour}</td>
+											<td>{air_temperature}℃</td>
+											<td>{relative_humidity}%</td>
+											<td>{wind_speed}m/s</td>
+										</tr>
+									</tbody>
 								)
 							})}
 						</table>
