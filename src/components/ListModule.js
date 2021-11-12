@@ -9,23 +9,29 @@ export default function ListModule(data){
 			{formattedData.map(({ date, data }, i) => {
 				return (
 					<li key={i}>
-						<h2>{date}</h2>
-						{data.map((
-						{ 
-							hour, 
-							air_temperature, 
-							relative_humidity, 
-							wind_speed
-						}, i) => {
-							return(
-								<section key={i}>
-									<h3>{hour}</h3>
-									<p>{air_temperature} grader celsius</p>
-									<p>{relative_humidity}% luftfuktighet</p>
-									<p>{wind_speed} m/s</p>
-								</section>
-							)
-						})}
+						<table>
+							<tr>
+								<th>{date}</th>
+								<th>℃</th>
+								<th>Humidity</th>
+								<th>Wind speed</th>
+							</tr>
+							{data.map(({ 
+								hour, 
+								air_temperature, 
+								relative_humidity, 
+								wind_speed
+							}, i) => {
+								return(
+									<tr key={i}>
+										<td>{hour}</td>
+										<td>{air_temperature}℃</td>
+										<td>{relative_humidity}%</td>
+										<td>{wind_speed}m/s</td>
+									</tr>
+								)
+							})}
+						</table>
 					</li>
 				);
 			})}
@@ -34,8 +40,25 @@ export default function ListModule(data){
 }
 
 const List = styled.ul`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
     list-style-type: none;
     margin-block-start: 0;
     margin-block-end: 0;
     padding-inline-start: 0;
+	width: 100%;
+	font-size: 14px;
+	li{
+		padding-bottom: 2rem;
+	}
+	table{
+		border-collapse: collapse;
+		tr{
+			border-bottom: 1px solid gray;
+			td, th{
+				padding: .5rem;
+			}
+		}
+	}
 `;
